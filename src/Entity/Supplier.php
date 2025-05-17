@@ -100,6 +100,7 @@ class Supplier
         $this->amount = $amount;
 
         return $this;
+
     }
 
     public function getStatus(): ?string

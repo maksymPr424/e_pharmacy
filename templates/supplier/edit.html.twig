@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Supplier{% endblock %}
+
+{% block body %}
+    <div class="container my-5">
+        <div class="card shadow rounded-4 border-0">
+            <div class="card-header bg-primary text-white rounded-top-4">
+                <h1 class="mb-0">📦 Edit Supplier</h1>
+            </div>
+            <div class="card-body">
+                {{ include('supplier/_form.html.twig', {'button_label': 'Update'}) }}
+
+                <div class="d-flex gap-2 mt-4">
+                    <a href="{{ path('app_supplier_index') }}" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left me-2"></i> Back to List
+                    </a>
+                    {{ include('supplier/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

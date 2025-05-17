@@ -17,11 +17,15 @@ final class StatisticsController extends AbstractController
         $shop = $this->getUser()->getShop();
         $suppliers = $supplierRepository->findByShop($shop);
         $products = $productRepository->findByShopId($shop->getId());
-        dd($orderRepository->findByShop($shop));
+        $orders = $orderRepository->findByShop($shop);
+        // dd();
 
         return $this->render('statistics/index.html.twig', [
             'suppliers_count' => count($suppliers),
             'products_count' => count($products),
+            'orders_count' => count($orders),
+            'orders' => $orders,
+            'suppliers' => $suppliers
         ]);
     }
 }

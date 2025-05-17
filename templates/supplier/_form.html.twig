@@ -1,0 +1,63 @@
+{{ form_start(form, {'attr': {'class': 'row g-4'}}) }}
+    <div class="col-md-6">
+        <div class="form-floating mb-3">
+            {{ form_widget(form.name, {'attr': {'class': 'form-control form-control-lg' ~ (form.name.vars.errors|length > 0 ? ' is-invalid' : ''), 'placeholder': 'Supplier Name'}}) }}
+            {{ form_label(form.name) }}
+            {{ form_errors(form.name, {'attr': {'class': 'invalid-feedback'}}) }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-floating mb-3">
+            {{ form_widget(form.address, {'attr': {'class': 'form-control form-control-lg' ~ (form.address.vars.errors|length > 0 ? ' is-invalid' : ''), 'placeholder': 'Address'}}) }}
+            {{ form_label(form.address) }}
+            {{ form_errors(form.address, {'attr': {'class': 'invalid-feedback'}}) }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-floating mb-3">
+            {{ form_widget(form.company, {'attr': {'class': 'form-control form-control-lg' ~ (form.company.vars.errors|length > 0 ? ' is-invalid' : ''), 'placeholder': 'Company'}}) }}
+            {{ form_label(form.company) }}
+            {{ form_errors(form.company, {'attr': {'class': 'invalid-feedback'}}) }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-floating mb-3">
+            {{ form_widget(form.delivery_date, {'attr': {'class': 'form-control form-control-lg' ~ (form.delivery_date.vars.errors|length > 0 ? ' is-invalid' : ''), 'placeholder': 'Delivery Date'}}) }}
+            {{ form_label(form.delivery_date) }}
+            {{ form_errors(form.delivery_date, {'attr': {'class': 'invalid-feedback'}}) }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-floating mb-3">
+            {{ form_widget(form.amount, {'attr': {'class': 'form-control form-control-lg' ~ (form.amount.vars.errors|length > 0 ? ' is-invalid' : ''), 'placeholder': 'Amount'}}) }}
+            {{ form_label(form.amount) }}
+            {{ form_errors(form.amount, {'attr': {'class': 'invalid-feedback'}}) }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-floating mb-3">
+            {{ form_widget(form.status, {'attr': {'class': 'form-select form-select-lg' ~ (form.status.vars.errors|length > 0 ? ' is-invalid' : ''), 'placeholder': 'Status'}}) }}
+            {{ form_label(form.status) }}
+            {{ form_errors(form.status, {'attr': {'class': 'invalid-feedback'}}) }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-floating mb-3">
+            {{ form_widget(form.product, {'attr': {'class': 'form-select form-select-lg' ~ (form.product.vars.errors|length > 0 ? ' is-invalid' : ''), 'placeholder': 'Product'}}) }}
+            {{ form_label(form.product) }}
+            {{ form_errors(form.product, {'attr': {'class': 'invalid-feedback'}}) }}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-floating mb-3">
+            {{ form_widget(form.shop, {'attr': {'class': 'form-select form-select-lg' ~ (form.shop.vars.errors|length > 0 ? ' is-invalid' : ''), 'placeholder': 'Shop'}}) }}
+            {{ form_label(form.shop) }}
+            {{ form_errors(form.shop, {'attr': {'class': 'invalid-feedback'}}) }}
+        </div>
+    </div>
+    <div class="col-12 text-end">
+        <button type="submit" class="btn btn-primary btn-lg shadow-sm">
+            <i class="bi bi-save me-2"></i> {{ button_label|default('Save') }}
+        </button>
+    </div>
+{{ form_end(form) }}

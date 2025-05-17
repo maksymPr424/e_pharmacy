@@ -10,6 +10,21 @@
         </div>
 
         <div class="card-body">
+            <!-- Search Form -->
+            <div class="mb-4">
+                <form method="get" action="{{ path('app_product_index', {'shop': shop.id}) }}" class="d-flex gap-2">
+                    <input type="text" name="search" class="form-control rounded-pill" placeholder="Search by product name..." value="{{ app.request.query.get('search') }}">
+                    <button type="submit" class="btn btn-primary rounded-pill">
+                        <i class="bi bi-search me-1"></i> Search
+                    </button>
+                    {% if app.request.query.get('search') %}
+                        <a href="{{ path('app_product_index', {'shop': shop.id}) }}" class="btn btn-secondary rounded-pill">
+                            <i class="bi bi-x-circle me-1"></i> Clear
+                        </a>
+                    {% endif %}
+                </form>
+            </div>
+
             {% if products|length > 0 %}
                 <div class="table-responsive">
                     <table class="table table-hover align-middle">
@@ -31,10 +46,10 @@
                                     <td>{{ product.stock }}</td>
                                     <td>
                                         <div class="d-flex gap-2">
-                                            <a href="{{ path('app_product_show', {'id': product.id}) }}" class="btn btn-sm btn-outline-primary">
+                                            <a href="{{ path('app_product_show', {'id': product.id, 'shop': shop.id}) }}" class="btn btn-sm btn-outline-primary">
                                                 <i class="bi bi-eye">Show</i>
                                             </a>
-                                            <a href="{{ path('app_product_edit', {'id': product.id}) }}" class="btn btn-sm btn-outline-warning">
+                                            <a href="{{ path('app_product_edit', {'id': product.id, 'shop': shop.id}) }}" class="btn btn-sm btn-outline-warning">
                                                 <i class="bi bi-pencil">Edit</i>
                                             </a>
                                         </div>
@@ -51,7 +66,7 @@
             {% endif %}
 
             <div class="text-end mt-4">
-                <a href="{{ path('app_product_new') }}" class="btn btn-success btn-lg shadow-sm">
+                <a href="{{ path('app_product_new', {'shop': shop.id}) }}" class="btn btn-success btn-lg shadow-sm">
                     <i class="bi bi-plus-circle me-1"></i> New Product
                 </a>
             </div>

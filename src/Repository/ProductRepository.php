@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Product;
+use App\Entity\Shop;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -23,6 +24,22 @@ class ProductRepository extends ServiceEntityRepository
             ->setParameter('shopId', $shopId)
             ->getQuery()
             ->getResult();
+    }
+
+    public function findByShopWithSearch(Shop $shop, string $searchTerm = ''): array
+    {
+        $queryBuilder = $this->createQueryBuilder('p')
+            ->andWhere('p.shop = :shop')
+            ->setParameter('shop', $shop)
+            ->orderBy('p.name', 'ASC');
+
+        if ($searchTerm) {
+            $queryBuilder
+                ->andWhere('p.name LIKE :search')
+                ->setParameter('search', '%' . $searchTerm . '%');
+        }
+
+        return $queryBuilder->getQuery()->getResult();
     }
 
     //    /**

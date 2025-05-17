@@ -17,12 +17,21 @@ use Symfony\Component\Routing\Attribute\Route;
 final class ProductController extends AbstractController
 {
     #[Route(name: 'app_product_index', methods: ['GET'])]
-    public function index(ProductRepository $productRepository): Response
+    public function index(Request $request, ProductRepository $productRepository): Response
     {
         $shop = $this->getUser()->getShop();
+        // Find the shop
+        if (!$shop) {
+            throw $this->createNotFoundException('Shop not found');
+        }
+
+        $searchTerm = $request->query->get('search', '');
+
+        // Fetch products for the shop, filtered by search term
+        $products = $productRepository->findByShopWithSearch($shop, $searchTerm);
 
         return $this->render('product/index.html.twig', [
-            'products' => $productRepository->findByShopId($shop->getId()),
+            'products' => $products,
             'shop' => $shop
         ]);
     }

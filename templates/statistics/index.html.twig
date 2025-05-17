@@ -3,7 +3,108 @@
 {% block title %}Hello StatisticsController!{% endblock %}
 
 {% block body %}
+<div class="container mt-5">
 
+    {# Metrics Cards #}
+    <div class="row text-center mb-4">
+        <div class="col-md-4">
+            <div class="card shadow-sm border-start border-primary border-4">
+                <div class="card-body">
+                    <h5 class="card-title text-muted">All Products</h5>
+                    <h3 class="card-text text-primary">{{ products_count }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm border-start border-success border-4">
+                <div class="card-body">
+                    <h5 class="card-title text-muted">All Suppliers</h5>
+                    <h3 class="card-text text-success">{{ suppliers_count }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm border-start border-warning border-4">
+                <div class="card-body">
+                    <h5 class="card-title text-muted">All Orders</h5>
+                    <h3 class="card-text text-warning">{{ orders_count }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Flex Row for Tables #}
+    <div class="row">
+        {# Suppliers Table #}
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">Suppliers</h5>
+                </div>
+                <div class="card-body table-responsive">
+                    <table class="table table-bordered table-hover align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Name</th>
+                                <th>Company</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for supplier in suppliers %}
+                                <tr>
+                                    <td>{{ supplier.name }}</td>
+                                    <td>{{ supplier.company }}</td>
+                                    <td>{{ supplier.status }}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="3" class="text-center">No suppliers found.</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <a href="{{ path('app_supplier_index') }}">Get more information</a>
+                </div>
+            </div>
+        </div>
+
+        {# Orders Table #}
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">Orders</h5>
+                </div>
+                <div class="card-body table-responsive">
+                    <table class="table table-bordered table-hover align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Product</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orders %}
+                                <tr>
+                                    <td>{{ order.product.name ?? 'N/A' }}</td>
+                                    <td>{{ order.amount }}</td>
+                                    <td>{{ order.status }}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="3" class="text-center">No orders found.</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <a href="{{ path('app_order_index') }}">Get more information</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 
 {% endblock %}

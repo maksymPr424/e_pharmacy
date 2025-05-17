@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Orders{% endblock %}
+
+{% block body %}
+    <div class="container my-5">
+        <div class="card shadow rounded-4 border-0">
+            <div class="card-header bg-primary text-white rounded-top-4">
+                <h1 class="mb-0">📦 Orders</h1>
+            </div>
+            <div class="card-body">
+                {% if orders|length > 0 %}
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Amount</th>
+                                    <th>Address</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for order in orders %}
+                                    <tr>
+                                        <td>{{ order.id }}</td>
+                                        <td>{{ order.amount }}</td>
+                                        <td>{{ order.address }}</td>
+                                        <td>{{ order.status }}</td>
+                                        <td>
+                                            <a href="{{ path('app_order_show', {'id': order.id}) }}" class="btn btn-sm btn-outline-primary">
+                                                <i class="bi bi-eye"></i> Show
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="5" class="text-center text-muted">No records found</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="alert alert-warning text-center" role="alert">
+                        No orders found.
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
