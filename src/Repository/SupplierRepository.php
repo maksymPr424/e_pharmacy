@@ -31,32 +31,31 @@ class SupplierRepository extends ServiceEntityRepository
     {
         $queryBuilder = $this->createQueryBuilder('s')
             ->andWhere('s.shop = :shop')
-            ->setParameter('shop', $shop)
+            ->setParameter('shop', $shop->getId())
             ->orderBy('s.name', 'ASC');
 
-        // Apply filters
-        if (!empty($filters['name'])) {
+        if (isset($filters['name']) && trim($filters['name']) !== '') {
             $queryBuilder
-                ->andWhere('LOWER(s.name) LIKE LOWER(:name)')
-                ->setParameter('name', '%' . $filters['name'] . '%');
+                ->andWhere('LOWER(s.name) LIKE :name')
+                ->setParameter('name', '%' . strtolower(trim($filters['name'])) . '%');
         }
 
-        if (!empty($filters['address'])) {
+        if (isset($filters['address']) && trim($filters['address']) !== '') {
             $queryBuilder
-                ->andWhere('LOWER(s.address) LIKE LOWER(:address)')
-                ->setParameter('address', '%' . $filters['address'] . '%');
+                ->andWhere('LOWER(s.address) LIKE :address')
+                ->setParameter('address', '%' . strtolower(trim($filters['address'])) . '%');
         }
 
-        if (!empty($filters['company'])) {
+        if (isset($filters['company']) && trim($filters['company']) !== '') {
             $queryBuilder
-                ->andWhere('LOWER(s.company) LIKE LOWER(:company)')
-                ->setParameter('company', '%' . $filters['company'] . '%');
+                ->andWhere('LOWER(s.company) LIKE :company')
+                ->setParameter('company', '%' . strtolower(trim($filters['company'])) . '%');
         }
 
-        if (!empty($filters['status'])) {
+        if (isset($filters['status']) && trim($filters['status']) !== '') {
             $queryBuilder
                 ->andWhere('s.status = :status')
-                ->setParameter('status', $filters['status']);
+                ->setParameter('status', trim($filters['status']));
         }
 
         return $queryBuilder->getQuery()->getResult();

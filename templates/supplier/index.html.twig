@@ -14,19 +14,19 @@
                     <form method="get" action="{{ path('app_supplier_index') }}" class="row g-3">
                         <div class="col-md-3">
                             <div class="form-floating">
-                                <input type="text" name="filter[name]" class="form-control" placeholder="Name" value="{{ app.request.query.get('filter') ? app.request.query.get('filter')['name'] : '' }}">
+                                <input type="text" name="filter[name]" class="form-control" placeholder="Name" value="{{ app.request.query.get('["filter"]') ? app.request.query.get('["filter"]')['name'] : '' }}">
                                 <label for="filter_name">Name</label>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-floating">
-                                <input type="text" name="filter[address]" class="form-control" placeholder="Address" value="{{ app.request.query.get('filter') ? app.request.query.get('filter')['address'] : '' }}">
+                                <input type="text" name="filter[address]" class="form-control" placeholder="Address" value="{{ app.request.query.get('["filter"]') ? app.request.query.get('["filter"]')['address'] : '' }}">
                                 <label for="filter_address">Address</label>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-floating">
-                                <input type="text" name="filter[company]" class="form-control" placeholder="Company" value="{{ app.request.query.get('filter') ? app.request.query.get('filter')['company'] : '' }}">
+                                <input type="text" name="filter[company]" class="form-control" placeholder="Company" value="{{ app.request.query.get('["filter"]') ? app.request.query.get('["filter"]')['company'] : '' }}">
                                 <label for="filter_company">Company</label>
                             </div>
                         </div>
@@ -34,9 +34,9 @@
                             <div class="form-floating">
                                 <select name="filter[status]" class="form-select">
                                     <option value="">All Statuses</option>
-                                    <option value="Pending" {{ app.request.query.get('filter') and app.request.query.get('filter')['status'] == 'Pending' ? 'selected' : '' }}>Pending</option>
-                                    <option value="Delivered" {{ app.request.query.get('filter') and app.request.query.get('filter')['status'] == 'Delivered' ? 'selected' : '' }}>Delivered</option>
-                                    <option value="Cancelled" {{ app.request.query.get('filter') and app.request.query.get('filter')['status'] == 'Cancelled' ? 'selected' : '' }}>Cancelled</option>
+                                    <option value="Pending" {{ app.request.query.get('["filter"]') and app.request.query.get('["filter"]')['status'] == 'Pending' ? 'selected' : '' }}>Pending</option>
+                                    <option value="Delivered" {{ app.request.query.get('["filter"]') and app.request.query.get('["filter"]')['status'] == 'Delivered' ? 'selected' : '' }}>Delivered</option>
+                                    <option value="Cancelled" {{ app.request.query.get('["filter"]') and app.request.query.get('["filter"]')['status'] == 'Cancelled' ? 'selected' : '' }}>Cancelled</option>
                                 </select>
                                 <label for="filter_status">Status</label>
                             </div>
@@ -45,7 +45,7 @@
                             <button type="submit" class="btn btn-primary">
                                 <i class="bi bi-filter me-2"></i> Filter
                             </button>
-                            {% if app.request.query.get('filter') %}
+                            {% if app.request.query.get('["filter"]') %}
                                 <a href="{{ path('app_supplier_index') }}" class="btn btn-outline-secondary">
                                     <i class="bi bi-x-circle me-2"></i> Clear Filters
                                 </a>

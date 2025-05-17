@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/supplier')]
 final class SupplierController extends AbstractController
 {
-    #[Route(name: 'app_supplier_index', methods: ['GET'])]
+    #[Route(name: 'app_supplier_index', methods: ['GET', 'POST'])]
     public function index(Request $request, SupplierRepository $supplierRepository): Response
     {
         $shop = $this->getUser()->getShop();
@@ -22,7 +22,8 @@ final class SupplierController extends AbstractController
             throw $this->createNotFoundException('No shop associated with your account.');
         }
 
-        $filters = $request->query->get('filter');
+        $filters = $request->query->all()["filter"];
+
         $name = is_array($filters) && isset($filters['name']) ? $filters['name'] : '';
         $address = is_array($filters) && isset($filters['address']) ? $filters['address'] : '';
         $company = is_array($filters) && isset($filters['company']) ? $filters['company'] : '';
