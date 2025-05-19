@@ -22,6 +22,20 @@ final class SupplierController extends AbstractController
             throw $this->createNotFoundException('No shop associated with your account.');
         }
 
+ 
+        if (empty($request->query->all())) {
+            $suppliers = $supplierRepository->findByShopWithFilters($shop, [
+                'name' => '',
+                'address' => '',
+                'company' => '',
+                'status' => '',
+            ]);
+
+            return $this->render('supplier/index.html.twig', [
+                'suppliers' => $suppliers,
+            ]);
+        }
+        
         $filters = $request->query->all()["filter"];
 
         $name = is_array($filters) && isset($filters['name']) ? $filters['name'] : '';

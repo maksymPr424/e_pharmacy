@@ -42,6 +42,11 @@ class ProductRepository extends ServiceEntityRepository
         return $queryBuilder->getQuery()->getResult();
     }
 
+    public function findAllProducts(): array
+    {
+        return $this->findAll();
+    }
+
     //    /**
     //     * @return Product[] Returns an array of Product objects
     //     */

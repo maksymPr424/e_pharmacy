@@ -37,7 +37,7 @@
         {% block navigation %}
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="{{ path('app_default') }}">
+                    <a class="navbar-brand" href="{{ path('app_default_admin') }}">
                         <i class="bi bi-shop me-2"></i> Pharmacy
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,50 +86,56 @@
         {% endblock %}
 
         {% block body %}
-    <div class="container mt-4">
-        <!-- Hero Section -->
-        <div class="text-center py-5 bg-light rounded-4 shadow-sm">
-            <h1 class="display-4 fw-bold text-primary">Welcome to E-Pharmacy</h1>
-            <p class="lead text-muted">Your Trusted Online Pharmacy</p>
-            <p class="mt-3">Browse and order medicines easily from the comfort of your home.</p>
-            {% if app.user %}
-                <a href="{{ path('app_product_index') }}" class="btn btn-primary btn-lg mt-3">Browse Medicines</a>
-            {% else %}
-                <a href="{{ path('app_login') }}" class="btn btn-primary btn-lg mt-3">Get Started</a>
-            {% endif %}
-        </div>
+            <div class="container mt-4">
+                <!-- Hero Section -->
+              <div class="text-center py-5 bg-light rounded-4 shadow-sm">
+                <h1 class="display-4 fw-bold text-primary">Welcome, Franchisee!</h1>
+                <p class="lead text-muted">Your One-Stop Pharmacy Management Solution</p>
+                <p class="mt-3">Oversee your pharmacy operations—manage medicines, track orders, and connect with suppliers.</p>
+                <a href="{{ path('app_product_index') }}" class="btn btn-primary btn-lg mt-3">Manage Medicines</a>
+            </div>
 
-        <!-- User Features Section -->
-        <div class="row g-4 py-3">
-            {% for product in products %}
-                    <div class="col-md-4 col-sm-6">
-                        <a href="{{ path('app_open_product_show', {'id': product.id})}}">
-                            <div class="card h-100 shadow-sm border-0">
-                                {% if product.photo %}
-                                    <img src="{{ asset(product.photo) }}" class="card-img-top img-fluid" alt="{{ product.name }}" style="object-fit: cover; height: 200px;">
-                                {% else %}
-                                    <div class="card-img-top bg-secondary" style="height: 200px; display: flex; align-items: center; justify-content: center; color: white;">
-                                        No Image
-                                    </div>
-                                {% endif %}
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">{{ product.name }}</h5>
-                                    <p class="card-text text-muted">
-                                        <strong>Price:</strong> ${{ product.price|number_format(2) }}<br>
-                                        <strong>Shop:</strong> {{ product.shop.name }}<br>
-                                        <strong>Category:</strong> {{ product.category.name }}
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
+            <!-- Franchisee Features Section -->
+            <div class="row g-4 py-5">
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body text-center">
+                            <i class="bi bi-capsule-fill display-4 text-primary mb-3"></i>
+                            <h5 class="card-title">Manage Medicines</h5>
+                            <p class="card-text text-muted">Add, update, and manage your medicine inventory with ease.</p>
+                            <a href="{{ path('app_product_index') }}" class="btn btn-outline-primary btn-sm">Go to Medicines</a>
+                        </div>
                     </div>
-            {% else %}
-                <div class="col-12 text-center text-muted">
-                    <p>No products available at the moment.</p>
                 </div>
-            {% endfor %}
-        </div>
-    </div>
-{% endblock %}
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body text-center">
+                            <i class="bi bi-truck display-4 text-primary mb-3"></i>
+                            <h5 class="card-title">Order Oversight</h5>
+                            <p class="card-text text-muted">Monitor and manage customer orders efficiently.</p>
+                            <a href="#" class="btn btn-outline-primary btn-sm disabled">Coming Soon</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body text-center">
+                            <i class="bi bi-people-fill display-4 text-primary mb-3"></i>
+                            <h5 class="card-title">Supplier Management</h5>
+                            <p class="card-text text-muted">Keep your supply chain organized with supplier tools.</p>
+                            <a href="{{ path('app_supplier_index') }}" class="btn btn-outline-primary btn-sm">Manage Suppliers</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Franchisee Call to Action -->
+            <div class="text-center py-4 bg-primary text-white rounded-4 shadow-sm">
+                <h3 class="fw-bold">Optimize Your Pharmacy Operations</h3>
+                <p class="lead">Streamline your workflow with E-Pharmacy Franchisee.</p>
+                <a href="{{ path('app_supplier_index') }}" class="btn btn-light btn-lg mt-3">Explore Suppliers</a>
+                <a href="{{ path('app_statistics_index') }}" class="btn btn-outline-light btn-lg mt-3 ms-2">View Statistics</a>
+            </div>
+        {% endblock %}
     </body>
 </html>
