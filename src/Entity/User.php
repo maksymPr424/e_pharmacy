@@ -45,6 +45,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(mappedBy: 'user')]
     private ?Shop $shop = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $language = null;
+
     public function getId(): ?int
     {
         return $this->id;

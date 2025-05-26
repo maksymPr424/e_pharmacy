@@ -16,7 +16,8 @@ final class DefaultController extends AbstractController
         // $this->redirectToRoute('app_login');
 
         return $this->render('base.html.twig', [
-            'products' => $productRepository->findAllProducts()
+            'products' => $productRepository->findAllProducts(),
+            'app_locales' => $this->getParameter('app.locales'),
         ]);
     }
 }

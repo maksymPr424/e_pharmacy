@@ -45,6 +45,20 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ms-auto">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ app.request.locale|upper }} <i class="bi bi-globe"></i> (Current: {{ app.request.locale }})
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                                    {% for locale in app_locales|split('|') %}
+                                        <li>
+                                            <a class="dropdown-item" href="{{ path(app.request.attributes.get('_route') ?? 'app_default', app.request.query.all|merge({'_locale': locale})) }}">
+                                                {{ locale|upper }}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
                             {% if app.user %}
                                 {% if is_granted('ROLE_ADMIN') %}
                                     <li class="nav-item">
@@ -60,11 +74,7 @@
                                     <li class="nav-item">
                                         <a class="nav-link {{ app.request.attributes.get('_route') == 'app_statistics_index' ? 'active' : '' }}" href="{{ path('app_statistics_index') }}">
                                             <i class="bi bi-bar-chart me-1"></i> Statistics
-                                        <                                            <i class="bi bi-capsule me-1"></i> Medicine
                                         </a>
-                                    </li>
-                                    <li class="nav-item">
-                  /a>
                                     </li>
                                 {% endif %}
                                 <li class="nav-item">
