@@ -49,6 +49,7 @@ final class ProductController extends AbstractController
             $product->setShop($shopRepository->findById($shop->getId()));
             $entityManager->persist($product);
             $entityManager->flush();
+            $this->addFlash('success', 'flash.product_added');
 
             return $this->redirectToRoute('app_product_index', ['shop' => $shop], Response::HTTP_SEE_OTHER);
         }

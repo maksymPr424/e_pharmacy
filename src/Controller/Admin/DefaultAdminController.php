@@ -11,6 +11,8 @@ final class DefaultAdminController extends AbstractController
     #[Route('/', name: 'app_default_admin')]
     public function index(): Response
     {
+        $this->addFlash('notice', 'Cześć');
+
         // $this->redirectToRoute('app_login');
         return $this->render('admin_base.html.twig');
     }

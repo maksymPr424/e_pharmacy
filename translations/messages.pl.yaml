@@ -8,3 +8,6 @@ shop: "Apteka"
 category: "Kategoria"
 no_image: "Brak obrazu"
 no_products: "Brak dostępnych produktów w tej chwili"
+flash:
+    product_added: "Produkt został успешно dodany do koszyka!"
+    product_already_added: "Ten produkt jest już w Twoim koszyku."

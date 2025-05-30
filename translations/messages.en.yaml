@@ -8,3 +8,6 @@ shop: "Shop"
 category: "Category"
 no_image: "No Image"
 no_products: "No products available at the moment."
+flash:
+    product_added: "Product added to cart successfully!"
+    product_already_added: "This product is already in your cart."
