@@ -52,7 +52,13 @@
                             </tr>
                             <tr>
                                 <th scope="row">Supplier</th>
-                                <td>{{ product.supplier }}</td>
+                                <td>
+                                    {% for supplier in product.suppliers %}
+                                        {{ supplier.name }},
+                                    {% endfor %}
+                                </td>
+
+                                {# <td>{{ product.suppliers.name }}</td> #}
                             </tr>
                         </tbody>
                     </table>

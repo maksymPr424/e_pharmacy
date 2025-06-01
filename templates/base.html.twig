@@ -52,7 +52,7 @@
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
                                     {% for locale in app_locales|split('|') %}
                                         <li>
-                                            <a class="dropdown-item" href="{{ path(app.request.attributes.get('_route') ?? 'app_default', app.request.query.all|merge({'_locale': locale})) }}">
+                                            <a class="dropdown-item" href="{{ path('app_default', {'_locale': locale}) }}">
                                                 {{ locale|upper }}
                                             </a>
                                         </li>

@@ -15,6 +15,7 @@ final class OpenProductController extends AbstractController
     public function show(Product $product, ShopRepository $shopRepository): Response
     {
         $shop = $shopRepository->findById($product->getShop());
+        // dd($shop);
 
         return $this->render('product/open_products.html.twig', [
             'product' => $product,
